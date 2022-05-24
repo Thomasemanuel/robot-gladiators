@@ -122,7 +122,6 @@ var startGame = function() {
     if (playerInfo.health > 0){
       //let player know they are in what round and reset enemy health
       window.alert("Welcome to Robot Gladiators! Round "+ (i+1));
-     
       var pickedEnemyObj = enemyInfo[i];
       pickedEnemyObj.health = randomNumber(40, 60);
       fight(pickedEnemyObj);
@@ -135,9 +134,8 @@ var startGame = function() {
         if (storeConfirm) {
           shop();
         }
-
-    } 
-  }
+      } 
+    }
     //if player isnt alive still
     else {
       window.alert("You've lost your robot in battle.");
