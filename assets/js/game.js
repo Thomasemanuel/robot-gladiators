@@ -195,45 +195,13 @@ var endGame = function() {
 var shop = function() {
   // ask player what they'd like to do
   var shopOptionPrompt = window.prompt(
-    'You have ' + playerInfo.money + ' dollars. Would you like to REFILL your health by 20 for $7, UPGRADE your attack by 6 for $7, or LEAVE the store? Please enter one "REFILL", "UPGRADE", or "LEAVE" to make a choice.'
+    "You have" + playerInfo.money + " dollars. Would you like to REFILL your health by 20 for $7, UPGRADE your attack by 6 for $7, or LEAVE the store? Please enter '1' to REFILL, '2' to UPGRADE, or '3' to LEAVE"
   );
-
-  // use switch case to carry out action
+  //convert string to interger with parseInt
+  shopOptionPrompt = parseInt(shopOptionPrompt);
+    // use switch case to carry out action
   switch (shopOptionPrompt) {
-    case 'REFILL':
-    case 'refill':
-      playerInfo.refillHealth();
-      break;
-      
-    case 'UPGRADE':
-    case 'upgrade':
-      playerInfo.upgradeAttack();
-      break;
-    case 'LEAVE':
-    case 'leave':
-      window.alert('Leaving the store.');
-      // do nothing, so function will end
-      break;
-    default:
-      window.alert('You did not pick a valid option. Try again.');
-
-      // call shop() again to force player to pick a valid option
-      shop();
-      break;
-  }
-};
-
-// go to shop between battles function
-var shop = function() {
-  // ask player what they'd like to do
-  var shopOptionPrompt = window.prompt(
-    'Would you like to REFILL your health, UPGRADE your attack, or LEAVE the store? Please enter one "REFILL", "UPGRADE", or "LEAVE" to make a choice.'
-  );
-
-  // use switch case to carry out action
-  switch (shopOptionPrompt) {
-    case 'REFILL':
-    case 'refill':
+    case 1:
       if (playerMoney >= 7) {
         window.alert("Refilling player's health by 20 for 7 dollars.");
 
@@ -245,8 +213,7 @@ var shop = function() {
         window.alert("You don't have enough money!");
     }
       break;
-    case 'UPGRADE':
-    case 'upgrade':
+    case 2:
       if (playerMoney >= 7) {
         window.alert("Upgrading player's attack by 6 for 7 dollars.");
 
@@ -258,8 +225,7 @@ var shop = function() {
         window.alert("You don't have enough money!");
     }
       break;
-    case 'LEAVE':
-    case 'leave':
+    case 3:
       window.alert('Leaving the store.');
 
       // do nothing, so function will end
