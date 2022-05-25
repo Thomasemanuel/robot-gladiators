@@ -96,16 +96,23 @@ var enemyInfo = [
 
 
 var fight = function(enemy) { //enemy.name = enemy.names[i]
+// keep track of who goes first
+var isPlayerTurn = true;
+//should be false half the time
+if (Math.random() > 0.5) {
+  isPlayerTurn = false;
+}
 // repeat and execute fight while enemy is alive
 while(playerInfo.health >0 && enemy.health > 0){
-//ask player if theyd like to skip or fight
+if (isPlayerTurn){
+   //ask player if theyd like to skip or fight
   if (fightOrSkip()){
-    break;
-  }  
-    //Subtract the value of `playerInfo.attack` from the value of `enemy.health` and use that result to update the value in the `enemy.health` variable
+  break;
+  } 
+  //Subtract the value of `playerInfo.attack` from the value of `enemy.health` and use that result to update the value in the `enemy.health` variable
     // generate random damage value based on player's attack power
     var damage = randomNumber(playerInfo.attack - 3, playerInfo.attack);
-
+  //remove enemys health
     enemy.health = Math.max(0, enemy.health - damage);
     // Log a resulting message to the console so we know that it worked.
     console.log(playerInfo.name +" has attacked " + enemy.name +". " +enemy.name + " now has " +enemy.health + " health remaining.");
@@ -118,7 +125,7 @@ while(playerInfo.health >0 && enemy.health > 0){
     }else{
         window.alert(enemy.name + " still has " + enemy.health+ " health remaining.");
     } 
-    
+    }// enemy attacks firt close if 
     // Subtract the value of `enemy.attack` from the value of `playerInfo.health` and use that result to update the value in the `playerInfo.health` variable.
     var damage = randomNumber(enemy.attack - 3, enemy.attack);
 
@@ -132,8 +139,11 @@ while(playerInfo.health >0 && enemy.health > 0){
     } else{
       window.alert(playerInfo.name + " still has " + playerInfo.health + " health left.");
     }
+    //swithc turn order for next round
+    isPlayerTurn= !isPlayerTurn;
+
 }//end while loop
-}// end fight function
+};// end fight function
 
 var startGame = function() {
   // reset player stats
